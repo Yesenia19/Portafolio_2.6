@@ -1,44 +1,34 @@
 
-
-
-
-// Obtener el valor actual de la cookie
-var visitas = parseInt(getCookie("visitas"));
-
-// Incrementar el número de visitas
-visitas++;
-
-// Guardar el nuevo valor de la cookie
-setCookie("visitas", visitas, 365);
-
-// Funciones para manejar las cookies
-function setCookie(nombre, valor, dias) {
-    var fecha = new Date();
-    fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
-    var expira = "expires=" + fecha.toUTCString();
-    document.cookie = nombre + "=" + valor + ";" + expira + ";path=/";
+var fecha = new Date();
+var fechaVisita = fecha.toLocaleDateString();
+var horaVisita = fecha.toLocaleTimeString();
+var numVisitas = localStorage.getItem("numVisitas");
+if (numVisitas === null) {
+    numVisitas = 1;
+} else {
+    numVisitas = parseInt(numVisitas) + 1;
 }
-
-function getCookie(nombre) {
-    var name = nombre + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var cookies = decodedCookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-        var c = cookies[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-// Obtener el valor actual del almacenamiento local
-var visitas = parseInt(localStorage.getItem("visitas"));
-
-// Incrementar el número de visitas
-visitas++;
-
-// Guardar el nuevo valor en el almacenamiento local
-localStorage.setItem("visitas", visitas);
+localStorage.setItem("numVisitas", numVisitas.toString());
+var request = indexedDB.open("miBaseDeDatos", 1);
+request.onerror = function(event) {
+    console.log("Error al abrir la base de datos");
+};
+request.onupgradeneeded = function(event) {
+    var db = event.target.result;
+    var objectStore = db.createObjectStore("miObjectStore", { keyPath: "id", autoIncrement: true });
+    objectStore.createIndex("fechaIndex", "fechaVisita", { unique: false });
+    objectStore.createIndex("horaIndex", "horaVisita", { unique: false });
+};
+request.onsuccess = function(event) {
+    var db = event.target.result;
+    var transaction = db.transaction(["miObjectStore"], "readwrite");
+    var objectStore = transaction.objectStore("miObjectStore");
+    var visita = { fechaVisita: fechaVisita, horaVisita: horaVisita, numVisitas: numVisitas };
+    var requestAdd = objectStore.add(visita);
+    requestAdd.onerror = function(event) {
+        console.log("Error al agregar la visita a indexedDB");
+    };
+    requestAdd.onsuccess = function(event) {
+        console.log("Visita agregada a indexedDB");
+    };
+};
