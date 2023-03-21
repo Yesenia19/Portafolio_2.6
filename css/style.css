@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito: 400,700&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #000000;
+    font-family: "Nunito", sans-serif;
+    font-size: 1rem;
+    color: #fff;
+}
+
+main{
+    max-width: 90%;
+    margin: auto;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+li {
+    margin-right: 1rem;
+}
+    
+h1 {
+    color: #65738d;
+    margin-bottom: 0.5rem;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 1rem 0;
+}
+    
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 15rem;
+    height: 100%;
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 10px;
+    margin: 10px 10px 10px 10px;
+    overflow: hidden;
+}
+
+.card--avatar {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    margin: 10px;
+}
+    
+.card--title {
+    color: #222;
+    font-weight: 700; 
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    margin: 10px;
+    text-align: center;
+}
+    
+.card--link {
+    text-decoration: none;
+    background: #501bcc;
+    color: #fff; 
+    padding: 0.3rem 1rem; 
+    border-radius: 20px;
+    align-self: safe;
+}
+

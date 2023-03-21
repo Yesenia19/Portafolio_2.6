@@ -1,0 +1,52 @@
+{
+    "name": "Portafolio Yesenia Olvera Angeles",
+    "short_name": "Portafolio",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#000099",
+    "theme_color": "#db4938",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "/images/moneda.png",
+        "type": "image/png",
+        "sizes": "72x72"
+      },
+      {
+        "src": "/images/moneda.png",
+        "type": "image/png",
+        "sizes": "96x96"
+      },
+      {
+        "src": "/images/moneda.png",
+        "type": "image/png",
+        "sizes": "128x128"
+      },
+      {
+        "src": "/images/moneda.png",
+        "type": "image/png",
+        "sizes": "144x144"
+      },
+      {
+        "src": "/images/moneda.png",
+        "type": "image/png",
+        "sizes": "152x152"
+      },
+      {
+        "src": "/images/moneda.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/images/moneda.png",
+        "type": "image/png",
+        "sizes": "384x384"
+      },
+      {
+        "src": "/images/moneda.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
+  
